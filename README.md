@@ -9,6 +9,9 @@
 Pour lancer le serveur Web Local il faut utiliser la commande : 
     ``php -d display_errors -S localhost:8000 -t public/`` dans un terminal 
 
+On peut aussi lancer le serveur avec la commande :
+    ``composer start:linux`` dans un terminal
+
 ## Styles de codages 
 
 Première vérification manuelle avec la commande : ``php vendor/bin/php-cs-fixer fix --dry-run``  
