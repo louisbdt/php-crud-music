@@ -4,3 +4,6 @@
 /vendor/
 
 .php-cs-fixer.cache
+
+tests/musiclite.sqlite
+tests/musiclite.sqlite_snapshot

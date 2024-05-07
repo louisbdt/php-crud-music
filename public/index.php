@@ -9,6 +9,8 @@ use Html\WebPage;
 
 $webPage = new WebPage();
 
+$webPage->appendContent("<h1>Liste des artistes</h1>");
+
 $stmt = MyPDO::getInstance()->prepare(
     <<<'SQL'
     SELECT id, name
@@ -20,7 +22,7 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $webPage->appendContent("<p>{$webPage->escapeString($ligne['name'])}\n");
+    $webPage->appendContent("<p> <a href='/artist.php?artistId={$ligne['id']}'> {$webPage->escapeString($ligne['name'])}</a> </p> \n");
 }
 
 echo $webPage->toHTML();
