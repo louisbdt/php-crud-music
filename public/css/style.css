@@ -1,0 +1,20 @@
+html {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    margin: auto;
+    height: 50vh;
+}
+
+.content {
+    display: flex;
+}
+
+.footer {
+    display: flex;
+}
+
+.header {
+    display: flex;
+}
+

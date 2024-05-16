@@ -7,22 +7,14 @@ declare(strict_types=1);
 use Database\MyPdo;
 use Html\WebPage;
 
-$webPage = new WebPage();
+$webPage = new \Html\AppWebPage();
 
 $webPage->appendContent("<h1>Liste des artistes</h1>");
 
-$stmt = MyPDO::getInstance()->prepare(
-    <<<'SQL'
-    SELECT id, name
-    FROM artist
-    ORDER BY name
-SQL
-);
+$ligne = \Entity\Collection\ArtistCollection::findAll();
 
-$stmt->execute();
-
-while (($ligne = $stmt->fetch()) !== false) {
-    $webPage->appendContent("<p> <a href='/artist.php?artistId={$ligne['id']}'> {$webPage->escapeString($ligne['name'])}</a> </p> \n");
+foreach ($ligne as $artist) {
+    $webPage->appendContent("<p> <a href='/artist.php?artistId={$artist->getId()}'> {$webPage->escapeString($artist->getName())}</a> </p> \n");
 }
 
 echo $webPage->toHTML();

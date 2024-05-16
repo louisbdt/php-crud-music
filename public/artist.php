@@ -11,43 +11,35 @@ if (isset($_GET['artistId']) && ctype_digit($_GET['artistId'])) {
     exit();
 }
 
-$stmt = \Database\MyPdo::getInstance();
-$stmt = $stmt->prepare(
-    <<<'SQL'
-    SELECT name
-    FROM artist
-    WHERE id = :artistId
-SQL
-);
+//$stmt = \Database\MyPdo::getInstance();
+//$stmt = $stmt->prepare(
+//    <<<'SQL'
+//    SELECT name
+//    FROM artist
+//    WHERE id = :artistId
+//SQL
+//);
+//
+//$stmt->execute(['artistId' => $artistId]);
+// $stmt->fetch();
 
-$stmt->execute(['artistId' => $artistId]);
-$artist = $stmt->fetch();
-
-if($artist === false) {
+try {
+    $artist = \Entity\Artist::findById($artistId);
+} catch (\Entity\Exception\EntityNotFoundException) {
     http_response_code(404);
     exit();
-
 }
 
 $html = new WebPage();
 
-$html->setTitle("Albums de {$html->escapeString($artist['name'])}");
+$html->setTitle("Albums de {$html->escapeString($artist->getName())}");
 
-$html->appendContent("<h1> Albums de {$artist['name']} </h1>");
+$html->appendContent("<h1> Albums de {$artist->getName()} </h1>");
 
-$requeteAlbums = \Database\MyPdo::getInstance()->prepare(
-    <<<'SQL'
-    SELECT year, name
-    FROM album
-    WHERE artistId = :id
-    ORDER BY year DESC, name 
-SQL
-);
+$albums = $artist->getAlbums();
 
-$requeteAlbums->execute([":id" => $artistId]);
-
-while (($ligne = $requeteAlbums->fetch()) !== false) {
-    $html->appendContent("<p>{$ligne['year']} {$html->escapeString($ligne['name'])}</p>");
+foreach ($albums as $album) {
+    $html->appendContent("<p>{$album->getYear()} {$html->escapeString($album->getName())}</p>");
 }
 
 echo $html->toHTML();
