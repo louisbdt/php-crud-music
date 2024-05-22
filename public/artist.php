@@ -30,16 +30,16 @@ try {
     exit();
 }
 
-$html = new WebPage();
+$html = new \Html\AppWebPage();
 
 $html->setTitle("Albums de {$html->escapeString($artist->getName())}");
 
-$html->appendContent("<h1> Albums de {$artist->getName()} </h1>");
+// $html->appendContent("<h1> Albums de {$artist->getName()} </h1>");
 
 $albums = $artist->getAlbums();
 
 foreach ($albums as $album) {
-    $html->appendContent("<p>{$album->getYear()} {$html->escapeString($album->getName())}</p>");
+    $html->appendContent("<p class='Album'> <span class='album__year'>{$album->getYear()} </span> <span class='album__name'>{$html->escapeString($album->getName())} </span> </p>");
 }
 
 echo $html->toHTML();

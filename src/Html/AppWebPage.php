@@ -25,8 +25,12 @@ class AppWebPage extends WebPage
                         {$this->getHead()}
                     </head>
                     <body>
-                        <div class="header"> <h1>{$this->getTitle()}</h1></div>          
-                        <div class="content">{$this->getBody()}</div>
+                        <div class="header"> 
+                            <h1>{$this->getTitle()}</h1>
+                        </div>          
+                        <div class="content"> 
+                           {$this->getBody()}
+                        </div>
                         <div class="footer">{$this->getLastModification()}</div>
                     </body>       
             </html>
