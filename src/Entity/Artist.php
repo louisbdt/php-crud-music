@@ -4,6 +4,9 @@ namespace Entity;
 
 use Database\MyPdo;
 use Entity\Collection\AlbumCollection;
+use Entity\Exception\EntityNotFoundException;
+
+use function PHPUnit\Framework\throwException;
 
 class Artist
 {
@@ -18,7 +21,7 @@ class Artist
         return $this->name;
     }
 
-    public static function findById($id): Artist
+    public static function findById(int $id): Artist
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
@@ -28,7 +31,11 @@ class Artist
             SQL
         );
         $stmt->execute([":Id" => $id]);
-        return $stmt->fetchObject(Artist::class);
+        $a = $stmt->fetchObject(Artist::class);
+        if ($a === false) {
+            throw new EntityNotFoundException();
+        }
+        return $a;
     }
 
     public function getAlbums(): array

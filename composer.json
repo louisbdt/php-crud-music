@@ -37,7 +37,8 @@
         "start:windows": ["Composer\\Config::disableProcessTimeout","bin/run-server.bat"],
         "start": "@start:linux",
         "test:crud": "php vendor/bin/codecept run Crud",
-        "test:codecept": "php vendor/bin/codecept run",
-        "test": ["@test:cs", "@test:codecept"]
+        "test:codecept": ["php vendor/bin/codecept clean", "php vendor/bin/codecept run"],
+        "test": ["@test:cs", "@test:codecept"],
+        "test:browse": ["php vendor/bin/codecept clean ", "php vendor/bin/codecept run Browse"]
     }
 }

@@ -31,8 +31,8 @@ html {
 .header {
     display: flex;
     border-style: solid;
-    padding-left: 70px;
     border-radius: 10px;
+    justify-content: center;
 }
 
 p {
