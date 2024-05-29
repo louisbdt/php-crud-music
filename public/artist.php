@@ -40,9 +40,7 @@ $albums = $artist->getAlbums();
 
 $html->appendContent("<div class='list'>");
 foreach ($albums as $album) {
-    $html->appendContent("<p class='album'> <span class='album__year'>{$album->getYear()} </span> <span class='album__name'>{$html->escapeString($album->getName())}</span></p>");
+    $html->appendContent("<div class='album'> <div class='album__cover'> <img src='/cover.php?coverId={$album->getCoverId()}' alt=''></div> <div class ='album__column'><span class='album__year'>{$album->getYear()} </span> <span class='album__name'>{$html->escapeString($album->getName())}</span></div></div>");
 }
 $html->appendContent("</div>");
 echo $html->toHTML();
-
-

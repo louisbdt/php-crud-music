@@ -39,6 +39,6 @@
         "test:crud": "php vendor/bin/codecept run Crud",
         "test:codecept": ["php vendor/bin/codecept clean", "php vendor/bin/codecept run"],
         "test": ["@test:cs", "@test:codecept"],
-        "test:browse": ["php vendor/bin/codecept clean ", "php vendor/bin/codecept run Browse"]
+        "test:browse": ["php tests/_output clean ", "php vendor/bin/codecept run Browse"]
     }
 }

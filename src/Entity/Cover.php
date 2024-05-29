@@ -19,12 +19,12 @@ class Cover
         return $this->jpeg;
     }
 
-    public function findById(int $id): Cover
+    public static function findById(int $id): Cover
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
                 SELECT id, jpeg
-                FROM artist
+                FROM cover
                 WHERE id = :Id
             SQL
         );

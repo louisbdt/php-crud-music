@@ -43,6 +43,4 @@ class Artist
         return AlbumCollection::findByArtistId($this->id);
     }
 
-
-
 }

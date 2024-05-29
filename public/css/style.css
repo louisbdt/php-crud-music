@@ -22,6 +22,7 @@ html {
 .list {
     display: flex;
     flex-direction: column;
+    row-gap: 8px;
 }
 .footer {
     display: flex;
@@ -35,17 +36,21 @@ html {
     justify-content: center;
 }
 
-p {
+.album {
+    border: 2px none;
     display: flex;
-    margin-left: 10px;
 }
 
-.Album {
+.album__column {
     display: flex;
-    border-style: solid;
-}
-
-.album__name {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5px;
     padding-left: 5px;
 }
+
+
+
+
+
 
