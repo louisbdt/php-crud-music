@@ -6,6 +6,7 @@ namespace Html;
 
 class WebPage
 {
+    use StringEscaper;
     private string $head;
     private string $title;
     private string $body;
@@ -96,11 +97,6 @@ class WebPage
                     {$this->getLastModification()} 
             </html>
         HTML;
-    }
-
-    public function escapeString(string $string): string
-    {
-        return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
     }
 
     public function getLastModification(): string

@@ -27,7 +27,9 @@
         "codeception/codeception": "^4.1",
         "codeception/module-phpbrowser": "^1",
         "codeception/module-asserts": "^1",
-        "codeception/module-db": "^1"
+        "codeception/module-db": "^1",
+      "ext-libxml": "*",
+        "ext-dom": "*"
     },
 
     "scripts": {
@@ -39,6 +41,7 @@
         "test:crud": "php vendor/bin/codecept run Crud",
         "test:codecept": ["php vendor/bin/codecept clean", "php vendor/bin/codecept run"],
         "test": ["@test:cs", "@test:codecept"],
-        "test:browse": ["php tests/_output clean ", "php vendor/bin/codecept run Browse"]
+        "test:browse": ["php tests/_output clean ", "php vendor/bin/codecept run Browse"],
+        "test:form": ["php vendor/bin/codecept clean","php vendor/bin/codecept run Form"]
     }
 }

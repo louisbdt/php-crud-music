@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browse;
+namespace Tests\Crud;
 
 use Entity\Cover;
 use Entity\Exception\EntityNotFoundException;

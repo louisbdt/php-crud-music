@@ -84,7 +84,7 @@ class Artist
         return $this;
     }
 
-    public static function create(string $name, ?int $id): Artist
+    public static function create(string $name, ?int $id = null): Artist
     {
         $artist = new Artist();
         $artist->setName($name)->setId($id);
@@ -95,18 +95,18 @@ class Artist
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<'SQL'
-            INSERT INTO artist
-            VALUES (:Id, :name)
+            INSERT INTO artist (name)
+            VALUES (:name)
             SQL
         );
-        $stmt->execute([':Id' => $this->getId(), ':name' => $this->getName()]);
+        $stmt->execute([':name' => $this->getName()]);
         $this->setId((int)MyPdo::getInstance()->lastInsertId());
         return $this;
     }
 
     public function save(): Artist
     {
-        if ($this->getId()) {
+        if ($this->getId() == null) {
             $this->insert();
         } else {
             $this->update();
