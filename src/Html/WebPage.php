@@ -10,6 +10,7 @@ class WebPage
     private string $head;
     private string $title;
     private string $body;
+    private string $menu;
 
 
     public function __construct(string $title = "")
@@ -102,5 +103,15 @@ class WebPage
     public function getLastModification(): string
     {
         return "Dernière modification de cette page le " . date("d/m/Y H:i:s.", getlastmod());
+    }
+
+    public function appendMenuButtton(string $name, string $url): void
+    {
+        $this->menu .= "<a href='{$url}'>$name</a>";
+    }
+
+    public function getMenu(): string
+    {
+        return $this->menu;
     }
 }

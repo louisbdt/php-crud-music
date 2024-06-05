@@ -9,6 +9,8 @@ use Html\WebPage;
 
 $webPage = new \Html\AppWebPage("Artistes");
 
+$webPage->appendMenuButtton("Ajouter", "");
+
 $webPage->appendContent("<div class='list'>");
 $ligne = \Entity\Collection\ArtistCollection::findAll();
 
